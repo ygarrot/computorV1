@@ -1,54 +1,62 @@
 class ft_math:
-
-    ft_sum(a, b):
+    def __init__(self):
+        self.prior = "(^*%/+-"
+        self.dic ={};
+        self.dic["+"] = self.ft_sum
+        self.dic["-"] = self.ft_sub
+        self.dic["*"] = self.ft_mult
+        self.dic["/"] = self.ft_div
+        self.dic["%"] = self.ft_modu
+        self.dic["^"] = self.ft_pow
+    def ft_sum(self, a, b):
         return (a + b)
     
-    ft_sub(a, b):
+    def ft_sub(self, a, b):
         return (a - b)
 
-    ft_mult(a, b):
+    def ft_mult(s, a, b):
         return (a * b)
     
-    ft_div(a, b):
+    def ft_div(s, a, b):
         return(a / b)
     
-    ft_modu (a, b):
+    def ft_modu (s, a, b):
         return (a % b)
     
-    ft_abs(a)
-        return (a < 0 ? -a : a);
+    def ft_abs(s, a):
+        return (-a if a < 0  else  a);
 
-    ft_sqrt(a):
+    def ft_sqrt(s, a):
         i = 0
-        if (!a)
+        if (a is False):
             return (0);
-        while (i * i  < a)
-            i++;
-        return (i % nb ? 0 : i)
+        while (i * i  < a):
+            i+=1
+        return (0 if i % nb else i)
         
-    ft_pow(a, b):
-        if (!b):
+    def ft_pow(s, a, b):
+        if (b is False):
             return (1);
         if (b == 1):
             return (a);
-        return (ft_pow(a  * a, b - 1))
+        return (a * s.ft_pow(a , b - 1))
 
-    ft_poly2(a, b, c)
+    def ft_poly2(s, a, b, c):
         delta = ft_pow(b, 2) - 4 * a * c;
 
-        if (delta < 0)
+        if (delta < 0):
             print("Discriminant is strictly negative, the two solutions are:");
             x1 = (-b / 2 * a) - (delta /2 * a)
             print(x1, "i / ",  2 * a);
             x2 = (-b / 2 * a) + (delta /2 * a)
             print(x2, "i / ",  2 * a);
  
-        else if (!delta)
+        elif (delta is False):
             print("Discriminant is NULL, the solution is:");
-            x1 = -b / 2a
+            x1 = -b / 2 * a
             print(x1);
             #x2 = x1
-        else
+        else:
             print("Discriminant is strictly positive, the two solutions are:");
             x1  = (-b + ft_sqrt(delta)) / 2 * a;
             x2  = (-b - ft_sqrt(delta)) / 2 * a;

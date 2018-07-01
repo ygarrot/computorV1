@@ -1,21 +1,10 @@
 import sys
-
-class polynome:
-    
-    def __init__(self, s):
-        self.s = s
-        self.arg = s.split(" ")
-
-    def resolve(self):
-        for s in self.s:
-            print(s)
-
+from math import ft_math as math
+from parse import *
+from exe import *
 def main():
-    print(sys.argv)
-    if (sys.argv[1] is False):
-        return 
-    test = polynome(sys.argv[1])
-    test.resolve()
-
+    tab = conv("8*2*X^2 = 4 *5")
+    tab = reduce(tab);
+    reduced(tab)
 if __name__ == "__main__":
     main()
