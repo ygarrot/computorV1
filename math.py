@@ -27,12 +27,12 @@ class ft_math:
         return (-a if a < 0  else  a);
 
     def ft_sqrt(s, a):
-        i = 0
+        i = 1
         if (a is False):
             return (0);
         while (i * i  < a):
-            i+=1
-        return (0 if i % nb else i)
+            i += 1
+        return (i if (i % a) is False else 0)
         
     def ft_pow(s, a, b):
         if (b is False):
@@ -41,8 +41,8 @@ class ft_math:
             return (a);
         return (a * s.ft_pow(a , b - 1))
 
-    def ft_poly2(s, a, b, c):
-        delta = ft_pow(b, 2) - 4 * a * c;
+    def ft_poly2(self, a, b, c):
+        delta = self.ft_pow(b, 2) - (4 * a * c);
 
         if (delta < 0):
             print("Discriminant is strictly negative, the two solutions are:");
@@ -58,6 +58,6 @@ class ft_math:
             #x2 = x1
         else:
             print("Discriminant is strictly positive, the two solutions are:");
-            x1  = (-b + ft_sqrt(delta)) / 2 * a;
-            x2  = (-b - ft_sqrt(delta)) / 2 * a;
+            x1  = (-b + self.ft_sqrt(delta)) / (2 * a);
+            x2  = (-b - self.ft_sqrt(delta)) / (2 * a);
             print (x1, x2);

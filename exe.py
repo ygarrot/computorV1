@@ -1,6 +1,6 @@
 from math import ft_math
+test = ft_math()
 def reduce(tab):
-    test = ft_math()
     i = 0;
     while ((i + 3) < len(tab)):
         for op in test.prior:
@@ -32,4 +32,5 @@ def reduced(tab):
         else:
             dec += int(tab[i]) if side is "right" else -int(tab[i])
         i += 1;
+    test.ft_poly2(5.0, 4.0, -9.3)
     print(val, dec)
