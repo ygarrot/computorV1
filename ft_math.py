@@ -44,7 +44,7 @@ class ft_math:
         return (a * s.ft_pow(a , b - 1))
 
     def ft_poly1(self, a, b):
-        x = a / b;
+        x = float(-b) / float(a);
         print ("The solution is " + str(x))
     def ft_poly2 (self, a, b, c):
         delta = self.ft_pow(b, 2.0) - (4.0 * a * c);
@@ -53,9 +53,9 @@ class ft_math:
         if (delta < 0):
             print("Discriminant is strictly negative, the two solutions are:");
             x1 = (-b / den) - (delta / den)
-            print(x1, "i / ", den);
+            print x1, "+ i /", den;
             x2 = (-b / den) + (delta / den)
-            print(x2, "i / ",  den);
+            print x2, "- i /",  den;
  
         elif (delta is False):
             print("Discriminant is NULL, the solution is:");

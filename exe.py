@@ -28,7 +28,7 @@ def reduced(tab):
     while (i < len(tab)):
         if (tab[i] is "="):
             side = "l"
-        elif (i + 2 < len(tab) and tab[i + 2] == "X"):
+        if (i + 2 < len(tab) and tab[i + 2] == "X"):
             deg = tab[i + 4] if tab[i + 4] > deg else deg
             val[int(tab[i + 4])] += int(tab[i]) if side is "right" else -int(tab[i])
             i += 4 
