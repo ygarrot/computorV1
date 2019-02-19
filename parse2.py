@@ -65,11 +65,11 @@ def test(interactive=False):
     try:
         tmp = calc_parser.parse(r_str)
         right = config.unknown 
-        right[c1] = tmp 
+        right[c1] = tmp if type(tmp) is not list else 0 
         config.unknown = [0, 0, 0]
         tmp = calc_parser.parse(l_str)
         left = config.unknown 
-        left[c1] = tmp 
+        left[c1] = tmp if type(tmp) is not list else 0 
     except Exception as e:
         print(l_str, r_str)
         sys.exit(": parse error")

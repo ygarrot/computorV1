@@ -95,14 +95,16 @@ def ft_pow(a, b):
     return (a * s.ft_pow(a, b - 1))
 
 def ft_poly1(a, b):
-    print("Polynomial degree: 1")
-    print("x = -%f / %f" % (a, b))
+    print("Polynomial degree: 1:")
+    print("Reduced form: %f * X^0 + %f * X^1 = 0" % (a, b))
+    print("x = %f / %f" % (-b, -a))
     x = float(-b) / float(a)
     print("The solution is " + str(x))
 
 def ft_poly2(a, b, c):
 
-    print("Polynomial degree: 2")
+    print("Polynomial degree: 2:")
+    print("Reduced form: %f * X^0 + %f * X^1 - % * X^2 = 0" % (a, b, c))
     delta = math.pow(abs(b), 2.0) - (4.0 * a * c)
     den = 2 * a
 
