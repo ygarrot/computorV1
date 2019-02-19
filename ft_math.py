@@ -10,17 +10,17 @@ import math
         # return (a)
 
 def get_pow(a):
-    return int(a.children[1])
+    return int(a.children[0])
 
 def ft_neg(self, a):
     return (-a)
 
 def ft_sum(self, a, b):
 
-    if (isinstance(b, Tree)):
+    if (isinstance(b, list)):
         return (a)
 
-    if (isinstance(a, Tree)):
+    if (isinstance(a, list)):
         return (b)
 
     print(a, "+", b) if debug == True else 0 
@@ -31,12 +31,12 @@ def ft_sub(self, a, b):
 
     print(a, "-", b) if debug == True else 0 
 
-    if (isinstance(b, Tree)):
-        config.unknown[get_pow(b) -1][val] *= -1 
+    if (isinstance(b, list)):
+        config.unknown[b[0] - 1] *= -1 
         print("return %f" %(a)) if debug == True else 0 
         return (a)
 
-    if (isinstance(b, Tree) and isinstance(a, Tree)):
+    if (isinstance(b, list) and isinstance(a, list)):
         print("return %f" %(0)) if debug == True else 0 
         return (0)
 
@@ -48,14 +48,13 @@ def ft_mul(s, a, b):
 
     print(a, "*", b) if debug == True else 0 
 
-    if (isinstance(b, Tree)):
-        if (get_pow(b) == 0):
-            return (0)
-        config.unknown[get_pow(b) -1][val] *= float(a)
+    if (isinstance(b, list)):
+        config.unknown[b[0] - 1] *= float(a)
         print("return %f" %(0)) if debug == True else 0 
         return (b)
 
-    result = a * b
+    result = float(a) * float(b)
+    print(a, b)
     print("return %f" %(result)) if debug == True else 0 
     return (result)
 
@@ -74,8 +73,14 @@ def ft_sqrt(s, a):
         return (0)
     while (i * i < a):
         i += 1
-    print(i, a)
     return (i if (i % a) == 0 else 0)
+
+def ft_pow2(s, a, b):
+   power = int(b)
+   if (power == 0):
+       return 1
+   config.unknown[power] = 1
+   return [int(b)] 
 
 def ft_pow(s, a, b):
 
