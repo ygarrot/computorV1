@@ -13,7 +13,7 @@ def get_pow(a):
     return int(a.children[0])
 
 def ft_neg(self, a):
-    return (-a)
+    return (-float(a))
 
 def ft_sum(self, a, b):
 
@@ -54,7 +54,6 @@ def ft_mul(s, a, b):
         return (b)
 
     result = float(a) * float(b)
-    print(a, b)
     print("return %f" %(result)) if debug == True else 0 
     return (result)
 
@@ -76,15 +75,17 @@ def ft_sqrt(s, a):
     return (i if (i % a) == 0 else 0)
 
 def ft_pow2(s, a, b):
-   power = int(b)
+   power = int(b) 
+   if (power < 0 or power > 2):
+       raise ValueError('power must be between 0 or 2')
    if (power == 0):
        return 1
-   config.unknown[power] = 1
-   return [int(b)] 
+   config.unknown[power - 1] = 1
+   return [power] 
 
-def ft_pow(s, a, b):
+def ft_pow(a, b):
 
-    print(a, "^", b) if debug == True else 0 
+    # print(a, "^", b) if debug == True else 0 
 
     if (b is False):
         return (1)
@@ -94,29 +95,29 @@ def ft_pow(s, a, b):
     return (a * s.ft_pow(a, b - 1))
 
 def ft_poly1(a, b):
+    print("Polynomial degree: 1")
+    print("x = -%f / %f" % (a, b))
     x = float(-b) / float(a)
     print("The solution is " + str(x))
 
 def ft_poly2(a, b, c):
-    print(a, b)
-    delta = math.pow(b, 2.0) - (4.0 * a * c)
+
+    print("Polynomial degree: 2")
+    delta = math.pow(abs(b), 2.0) - (4.0 * a * c)
     den = 2 * a
 
     if (delta < 0):
+        r = math.sqrt(-delta)
         print("Discriminant is strictly negative, the two solutions are:")
-        x1 = (-b / den) - (delta / den)
-        print(x1, "+ i /", den)
-        x2 = (-b / den) + (delta / den)
-        print(x2, "- i /",  den)
-
+        print("%f + %f i " % (-b / den, r /den))
+        print("%f - %f i " % (-b / den, r /den))
     elif (delta is False):
         print("Discriminant is NULL, the solution is:")
         x1 = -b / 2 * a
         print(x1)
-        #x2 = x1
     else:
-        print("Discriminant is strictly positive, the two solutions are:")
         r = math.sqrt(delta)
+        print("Discriminant is strictly positive, the two solutions are:")
         x1 = (-b - r) / den
         x2 = (-b + r) / den
         print (str(x1) + "\n" + str(x2))
