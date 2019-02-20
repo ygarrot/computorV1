@@ -18,7 +18,7 @@ def ft_sum(self, a, b):
 
     if (isinstance(b, list) and isinstance(a, list)):
         if b[0] == a[0]:
-           config.unknwown[a[0]] += config.unknown[b[0]] 
+           config.unknown[a[0]] += config.unknown[b[0]] 
         print("return %f" %(0)) if config.debug == True else 0 
         return (0)
 
@@ -43,7 +43,7 @@ def ft_sub(self, a, b):
 
     if (isinstance(b, list) and isinstance(a, list)):
         if b[0] == a[0]:
-           config.unknwown[a[0]] -= config.unknown[b[0]] 
+           config.unknown[a[0]] -= config.unknown[b[0]] 
         print("return %f" %(0)) if config.debug == True else 0 
         return (0)
 
