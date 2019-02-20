@@ -1,6 +1,0 @@
-#!/bin/sh
-cat ./test | \
-while read CMD; do
-	echo $CMD
-	echo $CMD : >> result ; python3 main.py $CMD >> result ; echo '\n\n' >> result
-done

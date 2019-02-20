@@ -36,6 +36,11 @@ def ft_sub(self, a, b):
        config.dstr += config.pstr
     print(config.dstr, a, "-", b, end=' ') if config.debug == True else 0 
 
+    if (isinstance(a, list)):
+        config.unknown[a[0] - 1] *= -1 
+        print("return %f" %(b)) if config.debug == True else 0 
+        return (b)
+
     if (isinstance(b, list)):
         config.unknown[b[0] - 1] *= -1 
         print("return %f" %(a)) if config.debug == True else 0 
@@ -65,7 +70,18 @@ def ft_mul(s, a, b):
     return (result)
 
 def ft_div(s, a, b):
-    return(a / b)
+    if (config.debug == True):
+       config.dstr += config.pstr
+    print(config.dstr, a, "/", b, end=' ') if config.debug == True else 0 
+
+    if (isinstance(b, list)):
+        config.unknown[b[0] - 1] /= float(a)
+        print("return %f" %(0)) if config.debug == True else 0 
+        return (b)
+
+    result = float(a) / float(b)
+    print("return %f" %(result)) if config.debug == True else 0 
+    return (result)
 
 def ft_modu(s, a, b):
     return (a % b)
