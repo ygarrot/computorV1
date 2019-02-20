@@ -16,6 +16,11 @@ def ft_sum(self, a, b):
        config.dstr += config.pstr
     print(config.dstr, a, "+", b, end=' ')  if config.debug == True else 0 
 
+    if (isinstance(b, list) and isinstance(a, list)):
+        if b[0] == a[0]:
+           config.unknwown[a[0]] += config.unknown[b[0]] 
+        print("return %f" %(0)) if config.debug == True else 0 
+        return (0)
 
     if (isinstance(b, list)):
         print(" return %f" %(a)) if config.debug == True else 0 
@@ -36,6 +41,12 @@ def ft_sub(self, a, b):
        config.dstr += config.pstr
     print(config.dstr, a, "-", b, end=' ') if config.debug == True else 0 
 
+    if (isinstance(b, list) and isinstance(a, list)):
+        if b[0] == a[0]:
+           config.unknwown[a[0]] -= config.unknown[b[0]] 
+        print("return %f" %(0)) if config.debug == True else 0 
+        return (0)
+
     if (isinstance(a, list)):
         config.unknown[a[0] - 1] *= -1 
         print("return %f" %(b)) if config.debug == True else 0 
@@ -45,10 +56,6 @@ def ft_sub(self, a, b):
         config.unknown[b[0] - 1] *= -1 
         print("return %f" %(a)) if config.debug == True else 0 
         return (a)
-
-    if (isinstance(b, list) and isinstance(a, list)):
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (0)
 
     result = float(a) - float(b)
     print("return %f" %(result)) if config.debug == True else 0 
@@ -116,14 +123,14 @@ def var(s, a):
 def ft_poly1(a, b):
     print("Polynomial degree: 1:")
     print("Reduced form: %f * X^1 + %f * X^0 = 0" % (a, b))
-    print("x = %f / %f" % (-b, -a))
+    print("x = %f / %f" % (float(-b), float(a)))
     x = float(-b) / float(a)
     print("The solution is " + str(x))
 
 def ft_poly2(a, b, c):
 
     print("Polynomial degree: 2")
-    print("Reduced form: %f * X^2 + %f * X^1 - %f * X^0 = 0" % (a, b, c))
+    print("Reduced form: %f * X^2 + %f * X^1 + %f * X^0 = 0" % (a, b, c))
     delta = ft_pow(abs(b), 2.0) - (4.0 * a * c)
     den = 2 * a
 
