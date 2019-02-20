@@ -67,6 +67,17 @@ def ft_mul(s, a, b):
        config.dstr += config.pstr
     print(config.dstr, a, "*", b, end=' ') if config.debug == True else 0 
 
+    if (isinstance(b, list) and isinstance(a, list)):
+        if b[0] == a[0]:
+           config.unknown[a[0]] += config.unknown[b[0]] 
+        print("return %f" %(0)) if config.debug == True else 0 
+        return (0)
+
+    if (isinstance(a, list)):
+        config.unknown[a[0] - 1] *= float(b)
+        print("return %f" %(0)) if config.debug == True else 0 
+        return (a)
+
     if (isinstance(b, list)):
         config.unknown[b[0] - 1] *= float(a)
         print("return %f" %(0)) if config.debug == True else 0 
