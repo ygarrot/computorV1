@@ -1,123 +1,61 @@
 from lark import Lark, Transformer, v_args, Tree
+import sys
+import numpy as np
 import config
 from config import *
 import math
 
+def int_to_array(s, a):
+   return np.array([float(a), 0, 0])
+
 def get_pow(a):
     return int(a.children[0])
 
-def ft_neg(self, a):
-    return (-float(a))
+def ft_neg(s, a):
+    return (-a)
 
-def ft_sum(self, a, b):
-
-
-    if (config.debug == True):
-       config.dstr += config.pstr
-    print(config.dstr, a, "+", b, end=' ')  if config.debug == True else 0 
-
-    if (isinstance(b, list) and isinstance(a, list)):
-        if b[0] == a[0]:
-           config.unknown[a[0]] += config.unknown[b[0]] 
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (0)
-
-    if (isinstance(b, list)):
-        print(" return %f" %(a)) if config.debug == True else 0 
-        return (a)
-
-    if (isinstance(a, list)):
-        print(" return %f" %(b)) if config.debug == True else 0 
-        return (b)
-
-    result = float(a) + float(b)
-    print(" return %f" %(result)) if config.debug == True else 0 
-
+def ft_sum(s, a, b):
+    result = a + b
     return (result)
 
-def ft_sub(self, a, b):
-
-    if (config.debug == True):
-       config.dstr += config.pstr
-    print(config.dstr, a, "-", b, end=' ') if config.debug == True else 0 
-
-    if (isinstance(b, list) and isinstance(a, list)):
-        if b[0] == a[0]:
-           config.unknown[a[0]] -= config.unknown[b[0]] 
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (0)
-
-    if (isinstance(a, list)):
-        config.unknown[a[0] - 1] *= -1 
-        print("return %f" %(b)) if config.debug == True else 0 
-        return (b)
-
-    if (isinstance(b, list)):
-        config.unknown[b[0] - 1] *= -1 
-        print("return %f" %(a)) if config.debug == True else 0 
-        return (a)
-
-    result = float(a) - float(b)
-    print("return %f" %(result)) if config.debug == True else 0 
+def ft_sub(s, a, b):
+    result = a - b
     return (result)
 
 def ft_mul(s, a, b):
-
-    if (config.debug == True):
-       config.dstr += config.pstr
-    print(config.dstr, a, "*", b, end=' ') if config.debug == True else 0 
-
-    if (isinstance(b, list) and isinstance(a, list)):
-        if b[0] == a[0]:
-           config.unknown[a[0]] += config.unknown[b[0]] 
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (0)
-
-    if (isinstance(a, list)):
-        config.unknown[a[0] - 1] *= float(b)
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (a)
-
-    if (isinstance(b, list)):
-        config.unknown[b[0] - 1] *= float(a)
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (b)
-
-    result = float(a) * float(b)
-    print("return %f" %(result)) if config.debug == True else 0 
+    if (a[0] or b[0]):
+       res = a[0] * b if a[0] else b[0] * a
+       return res
+    print(a, b)
+    result = a * b 
     return (result)
 
 def ft_div(s, a, b):
-    if (config.debug == True):
-       config.dstr += config.pstr
-    print(config.dstr, a, "/", b, end=' ') if config.debug == True else 0 
-
-    if (isinstance(b, list)):
-        config.unknown[b[0] - 1] /= float(a)
-        print("return %f" %(0)) if config.debug == True else 0 
-        return (b)
-
-    result = float(a) / float(b)
-    print("return %f" %(result)) if config.debug == True else 0 
+    result = a / b
     return (result)
 
 def ft_modu(s, a, b):
     return (a % b)
 
-def ft_abs(s, a):
+def ft_abs(a):
     return (-a if a < 0 else  a)
 
 def ft_sqrt(x):
     return x**(.5)
 
+def unknown(s, a):
+    return np.array([0,1, 0])
+
 def ft_pow2(s, a, b):
-   power = int(b) 
-   if (power < 0 or power > 2):
-       raise ValueError('power must be between 0 or 2')
-   if (power == 0):
-       return 1
-   config.unknown[power - 1] += 1
-   return [power] 
+   if (a[1]):
+      if (int(b[0]) >= 3):
+         raise Exception("power must be lower than 3")
+      a[1] = 0
+      lena =len(a)
+      a[int(b[0])] = 1
+      return a
+
+   return ft_pow(a, b) 
 
 def ft_pow(a, b):
 
@@ -126,10 +64,6 @@ def ft_pow(a, b):
     if (b == 1):
         return (a)
     return (a * ft_pow(a, b - 1))
-
-def var(s, a):
-   config.unknown[0] |= 1
-   return [0] 
 
 def ft_poly1(a, b):
     print("Polynomial degree: 1:")
