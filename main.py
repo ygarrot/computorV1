@@ -90,7 +90,7 @@ def reduce(tree):
 def pretty_mode(tree):
      print("\nPretty mode\n~~~~~~~~~~~~~~~~~~~~~~\n")
      print(tree.pretty(pstr))
-     print("~~~~~~~~~~~~~~~~~~~~~~\ndone")
+     print("~~~~~~~~~~~~~~~~~~~~~~\ndone\n")
 
 @v_args(inline=True)    # Affects the signatures of the methods
 class CalculateTree(Transformer):
@@ -100,12 +100,11 @@ class CalculateTree(Transformer):
     def __init__(self):
         self.vars = {}
 
-def test(equation, is_pretty=False):
+def test(equation, is_pretty=False, debug=False):
     calc_parser = Lark(calc_grammar, parser='lalr',debug=True, transformer=CalculateTree())
     pretty = Lark(calc_grammar, parser='lalr',debug=True)
     string = equation 
 
-    X = calc_parser.parse(string)
     try:
         tmp2 = pretty.parse(string)
         X = calc_parser.parse(string)
@@ -120,7 +119,8 @@ def test(equation, is_pretty=False):
     if (is_pretty is True):
       pretty_mode(tmp2)
 
-    reduce(tmp2)
+    if (debug is True):
+      reduce(tmp2)
     c, b, a = X
     if (b == 0):
       sys.exit(" Cannot Solve, pas d'inconnue : " + string)
@@ -134,8 +134,8 @@ if __name__ == '__main__':
   parser.add_argument("string", type=str, help="equation")
   parser.add_argument("-p", "--pretty", default=False, action="store_true",
                                        help="print equation in ast")
-  # parser.add_argument("-d", "--debug", default=False, action="store_true",
-                                       # help="print all operation")
+  parser.add_argument("-d", "--debug", default=False, action="store_true",
+                                       help="print all operation")
   args = parser.parse_args()
   # config.debug = args.debug
-  test(args.string, args.pretty)
+  test(args.string, args.pretty, args.debug)
