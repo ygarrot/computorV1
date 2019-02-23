@@ -44,6 +44,7 @@ calc_grammar = r"""
     %import common.LF
     %ignore WS_INLINE
 """
+
 dic = {
     'ft_sum': '+',
     'ft_pow': '^',
@@ -53,38 +54,44 @@ dic = {
     'ft_not': '-',
     'ft_equ': '=',
     }
-
 def print_res(res):
   idx = 0
   lenr = len(res)
   print('\033[94m', '+ ', end='')
   for unknown in range(0, lenr):
     if (res[unknown]):
-      print(str(res[unknown]), '*X^' + str(idx), end=' ' if idx +1 is lenr else ' + ')
+      print(str(res[unknown]), '* X^' + str(idx), end=' ' if idx +1 is lenr else ' + ')
       idx+=1
-  print("\033[0;0m", end =' ')
+  print("\033[0;0m", end ='')
 
-# def reccurse2(tree)
-    # if
 def reccurse(tree, op):
-    # print(tree)
-    if op is config.totald:
+    for truc in tree.children:
+      print(truc)
+    exit()
+    config.totald  += 1
+    actual = config.totald
+    if (isinstance(tree, Tree) == False):
+      print(str(tree), end =' ') if op < actual else 0#print_res(config.reduced[op])
+      return
+    trees = tree.children
+    reccurse(trees[0], op)
+    if (op == actual):
+      # print(op, config.totald)
+      # print(op == config.totald)
       print_res(config.reduced[op])
     elif op < config.totald:
       if (isinstance(tree, Tree)):
         if tree.data in dic:
           print(dic[tree.data], end = ' ')
-        else: print(str(tree.children[0]), end=' ')
-      else:
-        print(str(tree), end=' ')
+      # else:
+        # print(str(tree), end =' ')
+    if (len(tree.children) > 1):
+      reccurse(trees[1], op)
 
 def reduce(tree):
-  for idx in range(0, int(config.count /2)):
+  for idx in range(0, config.count):
       config.totald = -1 
-      trees = tree.iter_subtrees()
-      for truc in trees:
-        config.totald += 1
-        reccurse(truc, idx)
+      reccurse(tree, idx)
       print()
 
 def pretty_mode(tree):

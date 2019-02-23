@@ -79,7 +79,7 @@ def reccurse(tree, op):
         print(str(tree), end=' ')
 
 def reduce(tree):
-  for idx in range(0, int(config.count /2)):
+  for idx in range(0, config.count):
       config.totald = -1 
       trees = tree.iter_subtrees()
       for truc in trees:
