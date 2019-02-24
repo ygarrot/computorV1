@@ -70,9 +70,10 @@ def unknown(s, a=1):
 def ft_pow2(s, a, b):
    if (a[1]):
       if (int(b[0]) >= 3):
-         raise Exception("power must be lower than 3")
-      a[int(b[0])] = a[1]
+         raise Exception(": power of unknown must be lower than 3")
+      tmp = a[1]
       a[1] = 0
+      a[int(b[0])] = tmp
       res = a
       return res 
    res = ft_pow(a[0], b[0])

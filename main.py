@@ -64,15 +64,14 @@ def test(equation, is_pretty=False, debug=False):
     pretty = Lark(calc_grammar, parser='lalr',debug=True)
     string = equation 
 
-    X = calc_parser.parse(string)
     try:
         tmp2 = pretty.parse(string)
         X = calc_parser.parse(string)
     except UnexpectedInput as it:
-        print("there is an error in parsing(handled error):\n", file=sys.stderr)
+        print("there is an error in parsing (handled error):\n", file=sys.stderr)
         sys.exit(it)
     except Exception as e:
-        print("there is an error in parsing:", file=sys.stderr)
+        print("there is an error in parsing (handled error):", file=sys.stderr)
         print(string, e, file=sys.stderr)
         sys.exit()
 
@@ -81,7 +80,7 @@ def test(equation, is_pretty=False, debug=False):
 
     c, b, a = X
     if (b == 0):
-      sys.exit(" Cannot Solve, pas d'inconnue : " + string)
+      sys.exit(" Cannot Solve, no X^1: " + string)
     elif (a == 0):
       ft_math.ft_poly1(b, c)
     else:
@@ -92,10 +91,23 @@ def main():
   parser.add_argument("string", type=str, help="equation")
   parser.add_argument("-p", "--pretty", default=False, action="store_true",
                                        help="print equation in ast")
-  parser.add_argument("-d", "--debug", default=False, action="store_true",
+  parser.add_argument("-i", "--interactive", default=False, action="store_true",
                                        help="print all operation")
   args = parser.parse_args()
-  test(args.string, args.pretty, args.debug)
+  if (args.interactive is True):
+    print("Welcome")
+    while True:
+      try:
+        s = input('> ')
+      except EOFError:
+        break
+      if s == 'exit':
+        break
+      test(s, args.pretty)
+    print('good bye')
+  else:
+      test(args.string, args.pretty)
+
 
 if __name__ == '__main__':
   main()
