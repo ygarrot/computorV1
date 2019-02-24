@@ -5,66 +5,61 @@ import config
 from config import *
 import math
 
-def set_reduce(res):
-    config.reduced[config.count] = res
-    config.count+=1
-    return res
-
 def int_to_array(s, a):
     res = np.array([float(a), 0, 0])
-    return set_reduce(res)
+    return res
 
 
 def get_pow(a):
     res = int(a.children[0])
-    return set_reduce(res)
+    return res
 
 
 def ft_equ(s, a, b):
     res = ft_sub(s, a, b)
-    return set_reduce(res)
+    return res
 
 def ft_neg(s, a):
     res = (-a)
-    return set_reduce(res)
+    return res
 
 
 def ft_sum(s, a, b):
     res = a + b
-    return set_reduce(res)
+    return res
 
 
 def ft_sub(s, a, b):
     res = a - b
-    return set_reduce(res)
+    return res
 
 
 def ft_mul(s, a, b):
     if (a[0] or b[0]):
        res = a[0] * b if a[0] else b[0] * a
-       return set_reduce(res)
+       return res
     res = a * b
-    return set_reduce(res)
+    return res
 
 
 def ft_div(s, a, b):
     res = a / b
-    return set_reduce(res)
+    return res
 
 
 def ft_modu(s, a, b):
     res = (a % b)
-    return set_reduce(res)
+    return res
 
 
 def ft_abs(a):
     res = (-a if a < 0 else a)
-    return set_reduce(res)
+    return res
 
 
 def unknown(s, a):
     res = np.array([0, 1, 0])
-    return set_reduce(res)
+    return res
 
 
 def ft_pow2(s, a, b):
@@ -74,9 +69,9 @@ def ft_pow2(s, a, b):
       a[1] = 0
       a[int(b[0])] = 1
       res = a
-      return set_reduce(res) 
+      return res 
    res = ft_pow(a, b)
-   return set_reduce(res) 
+   return res 
 
 
 def ft_sqrt(x):

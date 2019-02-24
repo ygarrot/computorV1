@@ -44,48 +44,6 @@ calc_grammar = r"""
     %import common.LF
     %ignore WS_INLINE
 """
-dic = {
-    'ft_sum': '+',
-    'ft_pow': '^',
-    'ft_sub': '-',
-    'ft_mul': '*',
-    'ft_div': '/',
-    'ft_not': '-',
-    'ft_equ': '=',
-    }
-
-def print_res(res):
-  idx = 0
-  lenr = len(res)
-  print('\033[94m', '+ ', end='')
-  for unknown in range(0, lenr):
-    if (res[unknown]):
-      print(str(res[unknown]), '*X^' + str(idx), end=' ' if idx +1 is lenr else ' + ')
-      idx+=1
-  print("\033[0;0m", end =' ')
-
-# def reccurse2(tree)
-    # if
-def reccurse(tree, op):
-    # print(tree)
-    if op is config.totald:
-      print_res(config.reduced[op])
-    elif op < config.totald:
-      if (isinstance(tree, Tree)):
-        if tree.data in dic:
-          print(dic[tree.data], end = ' ')
-        else: print(str(tree.children[0]), end=' ')
-      else:
-        print(str(tree), end=' ')
-
-def reduce(tree):
-  for idx in range(0, int(config.count /2)):
-      config.totald = -1 
-      trees = tree.iter_subtrees()
-      for truc in trees:
-        config.totald += 1
-        reccurse(truc, idx)
-      print()
 
 def pretty_mode(tree):
      print("\nPretty mode\n~~~~~~~~~~~~~~~~~~~~~~\n")
@@ -119,8 +77,6 @@ def test(equation, is_pretty=False, debug=False):
     if (is_pretty is True):
       pretty_mode(tmp2)
 
-    if (debug is True):
-      reduce(tmp2)
     c, b, a = X
     if (b == 0):
       sys.exit(" Cannot Solve, pas d'inconnue : " + string)
@@ -129,7 +85,7 @@ def test(equation, is_pretty=False, debug=False):
     else:
       ft_math.ft_poly2(a, b, c)
 
-if __name__ == '__main__':
+def main():
   parser = argparse.ArgumentParser(description='basic polynome equation solver')
   parser.add_argument("string", type=str, help="equation")
   parser.add_argument("-p", "--pretty", default=False, action="store_true",
@@ -137,5 +93,7 @@ if __name__ == '__main__':
   parser.add_argument("-d", "--debug", default=False, action="store_true",
                                        help="print all operation")
   args = parser.parse_args()
-  # config.debug = args.debug
   test(args.string, args.pretty, args.debug)
+
+if __name__ == '__main__':
+  main()
