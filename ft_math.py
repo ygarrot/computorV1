@@ -43,6 +43,11 @@ def ft_mul(s, a, b):
 
 
 def ft_div(s, a, b):
+    if a[0] == 0 or b[0] == 0:
+      raise Exception("you cannot divide by 0, sorry")
+    if (b[0]):
+       res = a / b[0] 
+       return res
     res = a / b
     return res
 
@@ -57,8 +62,8 @@ def ft_abs(a):
     return res
 
 
-def unknown(s, a):
-    res = np.array([0, 1, 0])
+def unknown(s, a=1):
+    res = np.array([0, float(a), 0])
     return res
 
 
@@ -66,12 +71,12 @@ def ft_pow2(s, a, b):
    if (a[1]):
       if (int(b[0]) >= 3):
          raise Exception("power must be lower than 3")
+      a[int(b[0])] = a[1]
       a[1] = 0
-      a[int(b[0])] = 1
       res = a
       return res 
-   res = ft_pow(a, b)
-   return res 
+   res = ft_pow(a[0], b[0])
+   return [res, 0, 0] 
 
 
 def ft_sqrt(x):
@@ -79,10 +84,10 @@ def ft_sqrt(x):
 
 
 def ft_pow(a, b):
-    if (b is 0):
+    if (b < 0):
+        return (0)
+    if (b == 0):
         return (1)
-    if (b == 1):
-        return (a)
     return (a * ft_pow(a, b - 1))
 
 

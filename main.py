@@ -31,8 +31,9 @@ calc_grammar = r"""
 
     ?atom: DECIMAL        ->int_to_array
         | INTEGER         ->int_to_array
-        | UCASE_LETTER    ->unknown
-        | "-" atom         -> ft_neg
+        | INTEGER? "X"    ->unknown
+        | DECIMAL? "X"    ->unknown
+        | "-" atom        -> ft_neg
         | "(" sum ")"
 
     DECIMAL: INTEGER "." INTEGER 
@@ -63,6 +64,7 @@ def test(equation, is_pretty=False, debug=False):
     pretty = Lark(calc_grammar, parser='lalr',debug=True)
     string = equation 
 
+    X = calc_parser.parse(string)
     try:
         tmp2 = pretty.parse(string)
         X = calc_parser.parse(string)
