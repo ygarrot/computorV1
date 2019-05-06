@@ -44,13 +44,17 @@ Polynomial degree: 3
 
 The polynomial degree is stricly greater than 2, I can't solve.
 
-On considèrera toujours que l’entrée est bien formatée, ie. tous les termes sont de la
+On considèrera toujours que l’entrée est bien formatée, ie. tous les termes sont de la forme a ∗ x^p.
 
-forme a ∗ x^p.
-Les puissances sont bien ordonnées et toutes présentes. Attention, cela ne
-signifie pas forcement que l’équation soit soluble ! Dans ce cas, votre programme doit le
-détecter et l’indiquer.
+Les puissances sont bien ordonnées et toutes présentes.
+
+Attention, cela ne signifie pas forcement que l’équation soit soluble !
+
+Dans ce cas, votre programme doit le détecter et l’indiquer.
+
 Pensez aussi aux coefficients nuls, négatifs, pas entiers ...
-Il existe peut-être des cas particuliers que vous devez gérer. Par exemple pour l’équation 42 ∗ X0 = 42 ∗ X0
-, tous les nombres réels sont solution...
+
+Il existe peut-être des cas particuliers que vous devez gérer.
+
+Par exemple pour l’équation 42 ∗ X0 = 42 ∗ X0 , tous les nombres réels sont solution...
 
