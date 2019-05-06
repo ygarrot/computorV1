@@ -41,8 +41,8 @@ Exemples :
 >Reduced form: 5 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 0
 >
 >Polynomial degree: 3
-
-The polynomial degree is stricly greater than 2, I can't solve.
+>
+>The polynomial degree is stricly greater than 2, I can't solve.
 
 On considèrera toujours que l’entrée est bien formatée, ie. tous les termes sont de la forme a ∗ x^p.
 
